@@ -1,7 +1,9 @@
 import React from 'react';
 import Moment from "react-moment";
+import classNames from "classnames";
+import { Link } from "react-router-dom";
+
 import 'moment/locale/fr';
-import classNames from "classnames"
 
 export default function LaunchItem({ launch: { flight_number, mission_name, launch_date_local, launch_success } }) {
   return (
@@ -9,7 +11,7 @@ export default function LaunchItem({ launch: { flight_number, mission_name, laun
       <div className="row">
         <div className="col-md-9">
           <h4>
-            Mission:
+            Mission: { ' ' }
             <span
               className={classNames({
                 'text-success': launch_success,
@@ -22,7 +24,7 @@ export default function LaunchItem({ launch: { flight_number, mission_name, laun
           <p>Date: <Moment locale="fr" format="LLLL">{launch_date_local}</Moment></p>
         </div>
         <div className="col-md-3">
-          <button type="button" className="btn btn-outline-dark">Details</button>
+          <Link to={`/launch/${flight_number}`} className="btn btn-outline-dark">Details</Link>
         </div>
       </div>
     </div>
